@@ -1,22 +1,40 @@
-import Questao from "../../components/Questao";
+import { useEffect, useRef, useState } from "react";
 import QuestaoModel from "../../model/questão";
 import RespostaModel from "../../model/resposta";
+import Questionario from "../../components/Questionario";
+
+const questaoMock = new QuestaoModel(1, 'Qual é a melhor cor?', [
+  RespostaModel.errada('Verde'),
+  RespostaModel.errada('Vermelha'),
+  RespostaModel.errada('Azul'),
+  RespostaModel.certa('Preta'),
+])
 
 export default function Home() {
-  const questaoTeste = new QuestaoModel(1, 'Melhor cor?', [
-    RespostaModel.errada('Verde'),
-    RespostaModel.errada('Vermelha'),
-    RespostaModel.errada('Azul'),
-    RespostaModel.errada('Preta'),
-  ])
+  const [questao, setQuestao] = useState(questaoMock)
+
+  function questaoRespondida(questao : QuestaoModel){
+
+  }
+  
+  function irPraProximoPasso(){
+
+  }
+
   return (
     <div style={{
       display: 'flex',
+      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh'
     }}>
-        <Questao valor={questaoTeste}/>
+        <Questionario
+          questao={questao}
+          ultima={true}
+          questaoRespondida={questaoRespondida}
+          irPraProximoPasso={irPraProximoPasso}
+        />
     </div>
     
   )
